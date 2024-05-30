@@ -1,0 +1,19 @@
+name: develop-ci-cd
+
+on:
+  push:
+    branches:
+      - dev-ci-cd
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run app
+        run: docker compose up -d
