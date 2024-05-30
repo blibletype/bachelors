@@ -15,5 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create .env
+        run: |
+          touch .env
+          echo "${{ secrets.ENV_FILE }}" > .env
+          cat .env
+
       - name: Run app
         run: docker compose up -d
