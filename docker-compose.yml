@@ -5,7 +5,6 @@ services:
     build: ./backend
     container_name: bachelors-backend
     restart: unless-stopped
-    env_file: backend/.env.dev
     # environment:
     #   - MONGO_USERNAME=$MONGO_USERNAME
     #   - MONGO_PASSWORD=$MONGO_PASSWORD
