@@ -13,6 +13,7 @@ export const users = pgTable('users', {
   email: varchar('email', { length: 255 }).unique().notNull(),
   password: varchar('password', { length: 255 }).notNull(),
   role: roles('role').notNull().default(Roles.User),
+  accessToken: varchar('accessToken', { length: 255 }),
   createdAt: timestamp('createdAt').notNull().defaultNow(),
   updatedAt: timestamp('updatedAt').notNull().defaultNow(),
 });
