@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import crypto from 'node:crypto';
 import { StatusCodes } from 'http-status-codes';
 
 import { HttpRequestError } from './error';
@@ -15,4 +16,11 @@ export const verifyToken = async (token: string) => {
   } catch (error: any) {
     throw new HttpRequestError(StatusCodes.UNAUTHORIZED, error.message);
   }
+};
+
+export const hashPassword = async (password: string): Promise<string> => {
+  return crypto
+    .createHash('sha256')
+    .update(password)
+    .digest('hex');
 };

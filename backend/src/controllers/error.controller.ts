@@ -7,6 +7,7 @@ export const handleError = (
   res: Response,
   next: NextFunction
 ) => {
+  console.error(error);
   const status = error instanceof HttpRequestError ? error.statusCode : 500;
   const message = error.message || 'Internal Server Error';
   res.status(status).json({ message });

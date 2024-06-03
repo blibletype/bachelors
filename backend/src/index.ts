@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import { createServer } from 'node:http';
 import type { Request, Response } from 'express';
 
+import routes from './routes';
 import { handleError } from './controllers/error.controller';
 
 const app = express();
@@ -13,10 +14,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
+
+app.use('/auth', routes.authRouter);
+app.use(routes.devicesRouter);
 
 app.use(handleError);
 
