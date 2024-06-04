@@ -5,6 +5,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 
 import { Signin } from "../pages/auth/Signin";
 import { Signup } from "../pages/auth/Signup";
+import { AdminPage } from "../pages/admin/AdminPage";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -22,6 +23,10 @@ const Routes = () => {
           path: "/logout",
           element: <div>Logout</div>,
         },
+        {
+          path: "/admin",
+          element: <AdminPage />,
+        }
       ],
     },
   ];
@@ -42,8 +47,8 @@ const Routes = () => {
   ];
 
   const router = createBrowserRouter([
-    ...(!token ? routesForNotAuthenticatedOnly : []),
     ...routesForAuthenticatedOnly,
+    ...routesForNotAuthenticatedOnly,
   ]);
 
   return <RouterProvider router={router} />;
