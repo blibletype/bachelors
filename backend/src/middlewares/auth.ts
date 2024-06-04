@@ -1,12 +1,12 @@
-import type { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { HttpRequestError } from '../utils/error';
 import { verifyToken } from '../utils/auth';
 import { User } from '../types/user';
 import userService from '../services/users.service';
+import { RequestHandler } from '../types/api';
 
-export const auth = async (req: Request, res: Response, next: NextFunction) => {
+export const auth: RequestHandler = async (req, res, next) => {
   const authHeader = req.get('Authorization');
 
   if (!authHeader) {

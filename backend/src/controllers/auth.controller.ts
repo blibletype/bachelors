@@ -66,6 +66,26 @@ class AuthController {
 
     res.status(StatusCodes.OK).json({ accessToken: token });
   };
+
+  public getMe: RequestHandler = async (req, res, next) => {
+    if (!req.user) {
+      return next(
+        new HttpRequestError(StatusCodes.UNAUTHORIZED, 'Unauthorized')
+      );
+    }
+
+    const { id } = req.user;
+
+    const user = await usersService.findOneById(id);
+
+    if (!user) {
+      return next(
+        new HttpRequestError(StatusCodes.UNAUTHORIZED, 'Unauthorized')
+      );
+    }
+
+    res.status(StatusCodes.OK).json(user);
+  };
 }
 
 export default new AuthController();

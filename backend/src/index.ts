@@ -22,6 +22,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/auth', routes.authRouter);
 app.use(routes.devicesRouter);
+app.use(routes.baseRouter);
 
 app.use(handleError);
 
