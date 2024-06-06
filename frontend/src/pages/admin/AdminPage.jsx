@@ -16,14 +16,6 @@ export const AdminPage = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedDevice, setSelectedDevice] = useState(null);
 
-  function onCloseModal() {
-    setOpenModal(false);
-  }
-
-  function onCloseEditModal() {
-    setEditModalOpen(false);
-  }
-
   async function getMe() {
     const response = await axios.get('/me');
 
@@ -42,8 +34,15 @@ export const AdminPage = () => {
     }
   }
 
+  function onCloseModal() {
+    setOpenModal(false);
+  }
+
+  function onCloseEditModal() {
+    setEditModalOpen(false);
+  }
+
   function handleAddDevice(newDevice) {
-    console.log('Adding device');
     setDevices((prevDevices) => [...prevDevices, newDevice]);
   }
 
@@ -60,6 +59,15 @@ export const AdminPage = () => {
     setEditModalOpen(true);
   }
 
+  async function handleDeleteDevice(deviceId) {
+    const response = await axios.delete(`/devices/${deviceId}`);
+    if (response.status === StatusCodes.NO_CONTENT) {
+      setDevices((prevDevices) =>
+        prevDevices.filter((device) => device.id !== deviceId)
+      );
+    }
+  }
+
   useEffect(() => {
     getMe();
     getDevices();
@@ -68,7 +76,7 @@ export const AdminPage = () => {
   return (
     <>
       <Button onClick={() => setOpenModal(true)}>Create Device</Button>
-      {isLoading ? <div>Loading...</div> : <DeviceTable devices={devices} onEditDevice={handleEditDevice} />}
+      {isLoading ? <div>Loading...</div> : <DeviceTable devices={devices} onEditDevice={handleEditDevice} onDeleteDevice={handleDeleteDevice} />}
       <CreateDeviceModal show={openModal} onClose={onCloseModal} onDeviceCreate={handleAddDevice} />
       {selectedDevice && (
         <EditDeviceModal show={editModalOpen} onClose={onCloseEditModal} onDeviceUpdate={handleUpdateDevice} device={selectedDevice} />

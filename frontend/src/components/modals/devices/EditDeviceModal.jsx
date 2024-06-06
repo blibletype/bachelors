@@ -9,7 +9,7 @@ export const EditDeviceModal = ({ show, onClose, onDeviceUpdate, device }) => {
 
   async function handleUpdateDevice() {
     try {
-      const response = await axios.put(`devices/${device.id}`, { name });
+      const response = await axios.patch(`devices/${device.id}`, { name });
 
       if (response.status !== StatusCodes.OK) {
         alert('Invalid device. Please try again.');

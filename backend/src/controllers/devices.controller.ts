@@ -14,7 +14,8 @@ class DevicesController {
       console.error(error);
       next(new HttpRequestError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to fetch devices'));
     }
-  }
+  };
+
   public createDevice: RequestHandler = async(req, res, next) => {
     try {
       const newDevice = req.body as CreateDeviceDTO;
@@ -24,7 +25,30 @@ class DevicesController {
       console.error(error);
       next(new HttpRequestError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to create device'));
     }
-  }
+  };
+
+  public updateDevice: RequestHandler = async(req, res, next) => {
+    try {
+      const deviceId = req.params.id;
+      const updatedDevice = req.body as CreateDeviceDTO;
+      const device = await devicesService.updateOneById(deviceId, updatedDevice);
+      res.status(StatusCodes.OK).json(device);
+    } catch (error) {
+      console.error(error);
+      next(new HttpRequestError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to update device'));
+    }
+  };
+
+  public deleteDevice: RequestHandler = async(req, res, next) => {
+    try {
+      const deviceId = req.params.id;
+      await devicesService.deleteOneById(deviceId);
+      res.status(StatusCodes.NO_CONTENT).send();
+    } catch (error) {
+      console.error(error);
+      next(new HttpRequestError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to delete device'));
+    }
+  };
 }
 
 export default new DevicesController();

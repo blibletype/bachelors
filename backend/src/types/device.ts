@@ -13,3 +13,5 @@ export type Device = {
 };
 
 export type CreateDeviceDTO = Pick<Device, 'name'> & Partial<Omit<Device, 'name' | 'id'>>;
+
+export type UpdateDeviceDTO = Partial<CreateDeviceDTO>;

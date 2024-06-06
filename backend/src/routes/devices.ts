@@ -19,6 +19,8 @@ router.post(
 
 router.get('/devices', auth, role(Roles.Admin), controller.getAllDevices);
 
-// router.get('/device/:id');
+router.patch('/devices/:id', auth, role(Roles.Admin), controller.updateDevice);
+
+router.delete('/devices/:id', auth, role(Roles.Admin), controller.deleteDevice);
 
 export default router;

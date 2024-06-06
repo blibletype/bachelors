@@ -1,6 +1,6 @@
 import { Button, Table } from 'flowbite-react';
 
-export const DeviceTable = ({ devices, onEditDevice }) => {
+export const DeviceTable = ({ devices, onEditDevice, onDeleteDevice }) => {
   return (
     <div className="overflow-x-auto">
       <Table striped>
@@ -11,6 +11,9 @@ export const DeviceTable = ({ devices, onEditDevice }) => {
           <Table.HeadCell>User ID</Table.HeadCell>
           <Table.HeadCell>
             <span className="sr-only">Edit</span>
+          </Table.HeadCell>
+          <Table.HeadCell>
+            <span className="sr-only">Delete</span>
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
@@ -24,6 +27,9 @@ export const DeviceTable = ({ devices, onEditDevice }) => {
               <Table.Cell>{device.userId}</Table.Cell>
               <Table.Cell>
                 <Button color="light" onClick={() => onEditDevice(device)}>Edit</Button>
+              </Table.Cell>
+              <Table.Cell>
+                <Button color="failure" onClick={() => onDeleteDevice(device.id)}>Delete</Button>
               </Table.Cell>
             </Table.Row> 
           ))}
