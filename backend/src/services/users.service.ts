@@ -1,8 +1,8 @@
-import { eq } from 'drizzle-orm';
+import { eq } from "drizzle-orm";
 
-import { db } from '../db';
-import { CreateUserDTO, User } from '../types/user';
-import { users as usersTable } from '../db/schema';
+import { db } from "../db";
+import { CreateUserDTO, User } from "../types/user";
+import { users as usersTable } from "../db/schema";
 
 class UsersService {
   public async findOneById(id: string): Promise<User | null> {
@@ -17,7 +17,7 @@ class UsersService {
       console.error(error);
       return null;
     }
-  };
+  }
 
   public async findOneByEmail(email: string): Promise<User | null> {
     try {
@@ -31,13 +31,13 @@ class UsersService {
       console.error(error);
       return null;
     }
-  };
+  }
 
   public async insertOne(user: CreateUserDTO): Promise<User> {
     const [insertedUser] = await db.insert(usersTable).values(user).returning();
 
     return insertedUser as User;
-  };
+  }
 
   public async updateOneById(id: string, user: Partial<User>): Promise<User> {
     const [updatedUser] = await db
@@ -47,7 +47,7 @@ class UsersService {
       .returning();
 
     return updatedUser as User;
-  };
+  }
 }
 
 export default new UsersService();

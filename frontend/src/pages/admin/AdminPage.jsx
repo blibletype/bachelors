@@ -75,7 +75,7 @@ export const AdminPage = () => {
 
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Create Device</Button>
+      <Button onClick={() => setOpenModal(true)} className="mr-2 mb-2 font-medium">Create Device</Button>
       {isLoading ? <div>Loading...</div> : <DeviceTable devices={devices} onEditDevice={handleEditDevice} onDeleteDevice={handleDeleteDevice} />}
       <CreateDeviceModal show={openModal} onClose={onCloseModal} onDeviceCreate={handleAddDevice} />
       {selectedDevice && (
