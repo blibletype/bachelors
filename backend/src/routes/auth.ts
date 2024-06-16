@@ -7,15 +7,15 @@ import authController from '../controllers/auth.controller';
 const router = Router();
 
 router.post(
-  '/signup',
+  '/register',
   validateRequestBody(createUserSchema),
-  authController.signup
+  authController.register
 );
 
 router.post(
-  '/signin',
+  '/login',
   validateRequestBody(createUserSchema),
-  authController.signin
+  authController.login
 );
 
 export default router;

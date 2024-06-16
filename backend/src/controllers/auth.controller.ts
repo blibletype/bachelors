@@ -8,7 +8,7 @@ import usersService from '../services/users.service';
 import { generateToken, hashPassword } from '../utils/auth';
 
 class AuthController {
-  public signup: RequestHandler = async (req, res, next) => {
+  public register: RequestHandler = async (req, res, next) => {
     const { email, password } = req.body as CreateUserDTO;
 
     const isUserExist = await usersService.findOneByEmail(email);
@@ -34,7 +34,7 @@ class AuthController {
     res.status(StatusCodes.CREATED).json(user);
   };
 
-  public signin: RequestHandler = async (req, res, next) => {
+  public login: RequestHandler = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await usersService.findOneByEmail(email);
