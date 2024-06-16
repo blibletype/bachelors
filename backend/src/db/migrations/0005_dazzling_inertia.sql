@@ -1,0 +1,1 @@
+ALTER TABLE "devicesData" ALTER COLUMN "timestamp" DROP NOT NULL;

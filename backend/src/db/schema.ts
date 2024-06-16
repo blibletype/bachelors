@@ -14,8 +14,8 @@ export const users = pgTable('users', {
   password: varchar('password', { length: 255 }).notNull(),
   role: roles('role').notNull().default(Roles.User),
   accessToken: varchar('accessToken', { length: 255 }),
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
+  createdAt: timestamp('createdAt').$defaultFn(() => new Date()),
+  updatedAt: timestamp('updatedAt').$defaultFn(() => new Date()),
 });
 
 export const devices = pgTable('devices', {
@@ -23,6 +23,16 @@ export const devices = pgTable('devices', {
   name: varchar('name', { length: 255 }).notNull(),
   userId: uuid('userId').references(() => users.id),
   status: deviceStatus('status').notNull().default(DeviceStatus.Offline),
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
+  current: varchar('current', { length: 255 }),
+  power: varchar('power', { length: 255 }),
+  createdAt: timestamp('createdAt').$defaultFn(() => new Date()),
+  updatedAt: timestamp('updatedAt').$defaultFn(() => new Date()),
+});
+
+export const devicesData = pgTable('devicesData', {
+  id: uuid('id').primaryKey().notNull().defaultRandom(),
+  deviceId: uuid('deviceId').references(() => devices.id).notNull(),
+  current: varchar('current', { length: 255 }).notNull(),
+  power: varchar('power', { length: 255 }).notNull(),
+  timestamp: timestamp('timestamp').$defaultFn(() => new Date()),
 });

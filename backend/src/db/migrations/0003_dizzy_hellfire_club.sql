@@ -1,0 +1,1 @@
+ALTER TABLE "devicesData" RENAME COLUMN "createdAt" TO "timestamp";

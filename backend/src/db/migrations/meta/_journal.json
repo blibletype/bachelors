@@ -8,6 +8,41 @@
       "when": 1717261800685,
       "tag": "0000_bouncy_red_wolf",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1718517187298,
+      "tag": "0001_nappy_whirlwind",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1718518308455,
+      "tag": "0002_right_otto_octavius",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1718519303022,
+      "tag": "0003_dizzy_hellfire_club",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1718521052324,
+      "tag": "0004_flaky_shocker",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1718521449780,
+      "tag": "0005_dazzling_inertia",
+      "breakpoints": true
     }
   ]
 }
